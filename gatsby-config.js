@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: "Grace Portfolio",
+    title: "Grace Mae Huddleston",
+    description: "Grace Huddleston's portfolio site.",
+    author: "@garethbk",
   },
   plugins: [
     {
@@ -11,6 +13,22 @@ module.exports = {
         spaceId: "rnpqidzxa4bk",
       },
     },
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        // CommonMark mode (default: true)
+        commonmark: true,
+        // Footnotes mode (default: true)
+        footnotes: true,
+        // Pedantic mode (default: true)
+        pedantic: true,
+        // GitHub Flavored Markdown mode (default: true)
+        gfm: true,
+        // Plugins configs
+        plugins: [],
+      },
+    },
+    "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
