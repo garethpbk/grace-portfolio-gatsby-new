@@ -35,8 +35,6 @@ const drawArt = (arts) =>
 
     const slug = name.toLowerCase().replace(/ /g, "-");
 
-    console.log({ slug });
-
     return (
       <Link to={`/${slug}`} key={slug}>
         <GatsbyImage image={image} />

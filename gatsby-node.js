@@ -30,13 +30,6 @@ exports.createPages = ({ graphql, actions }) => {
                   file {
                     url
                   }
-                  fluid(maxWidth: 1920) {
-                    aspectRatio
-                    base64
-                    sizes
-                    src
-                    srcSet
-                  }
                   gatsbyImageData
                 }
               }
@@ -52,8 +45,6 @@ exports.createPages = ({ graphql, actions }) => {
         const links = result.data.allContentfulGraceArt.edges.map((uno) =>
           uno.node.name.toLowerCase().replace(/ /g, "-")
         );
-
-        console.log({ links });
 
         result.data.allContentfulGraceArt.edges.forEach((edge, index) => {
           const slug = edge.node.name.toLowerCase().replace(/ /g, "-");

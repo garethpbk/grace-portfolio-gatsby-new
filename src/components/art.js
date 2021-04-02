@@ -15,7 +15,7 @@ const ArtImg = styled(GatsbyImage)`
 const Art = (props) => {
   const {
     bigImage,
-    bigImage: { fluid, gatsbyImageData },
+    bigImage: { gatsbyImageData },
     materials,
     name,
     size,
