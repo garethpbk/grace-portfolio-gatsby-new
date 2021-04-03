@@ -25,10 +25,8 @@ const Gallery = styled.main`
 const drawArt = (arts) =>
   arts.map((art) => {
     const {
-      node: {
-        name,
-        bigImage: { gatsbyImageData },
-      },
+      name,
+      image: { gatsbyImageData },
     } = art;
 
     const image = getImage(gatsbyImageData);
@@ -43,7 +41,8 @@ const drawArt = (arts) =>
   });
 
 const Work = (data) => {
-  const allArt = data.data.allContentfulGraceArt.edges;
+  const allArt =
+    data.data.allContentfulGraceArtReference.edges[0].node.artReference;
 
   return (
     <Layout>
@@ -66,31 +65,23 @@ export default Work;
 
 export const ALL_ART = graphql`
   query {
-    allContentfulGraceArt {
+    allContentfulGraceArtReference {
       edges {
         node {
-          id
-          name
-          year
-          size
-          materials {
-            materials
-          }
-          image {
-            title
-            file {
-              url
+          artReference {
+            id
+            name
+            size
+            materials {
+              materials
             }
-          }
-          bigImage {
-            title
-            file {
-              url
+            image {
+              title
+              file {
+                url
+              }
+              gatsbyImageData
             }
-            fluid {
-              ...GatsbyContentfulFluid
-            }
-            gatsbyImageData
           }
         }
       }

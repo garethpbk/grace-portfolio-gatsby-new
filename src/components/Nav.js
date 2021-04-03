@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "gatsby";
+import React, { useEffect } from "react";
+import { Link, navigate } from "gatsby";
 import styled from "styled-components";
 
 const NavWrapper = styled.nav`
@@ -14,7 +14,7 @@ const NavWrapper = styled.nav`
   }
 `;
 
-const Nav = styled.nav`
+const NavElement = styled.nav`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -35,20 +35,40 @@ const Controls = styled.div`
   margin: 20px 0 0 0;
 `;
 
-export default (props) => (
-  <NavWrapper>
-    <Nav>
-      <Link to="/work">Work</Link>
-      <Link to="/about">About</Link>
-      {/* <Link to="">Find Me</Link> */}
-    </Nav>
-    {props.art ? (
-      <Controls>
-        <Link to={`/${props.prevLink}`}>Previous</Link>
-        <Link to={`/${props.nextLink}`}>Next</Link>
-      </Controls>
-    ) : (
-      <Controls />
-    )}
-  </NavWrapper>
-);
+const Nav = ({ art, prevLink, nextLink }) => {
+  const arrowNav = ({ keyCode }) => {
+    if (keyCode === 37) {
+      navigate(`/${prevLink}`);
+    } else if (keyCode === 39) {
+      navigate(`/${nextLink}`);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", arrowNav);
+
+    return () => {
+      document.removeEventListener("keydown", arrowNav);
+    };
+  }, []);
+
+  return (
+    <NavWrapper>
+      <NavElement>
+        <Link to="/work">Work</Link>
+        <Link to="/about">About</Link>
+        {/* <Link to="">Find Me</Link> */}
+      </NavElement>
+      {art ? (
+        <Controls>
+          <Link to={`/${prevLink}`}>Previous</Link>
+          <Link to={`/${nextLink}`}>Next</Link>
+        </Controls>
+      ) : (
+        <Controls />
+      )}
+    </NavWrapper>
+  );
+};
+
+export default Nav;

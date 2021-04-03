@@ -10,11 +10,7 @@ export default (props) => {
       links={links}
       index={0}
       art={true}
-      render={() => (
-        <div>
-          <StaticArt data={props.art[0].node} />
-        </div>
-      )}
+      render={() => <StaticArt data={props.art[0].node} />}
     />
   );
 };

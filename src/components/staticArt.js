@@ -1,5 +1,7 @@
 import React from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { getImage } from "gatsby-plugin-image";
+
+import { ArtImg, ArtWrapper } from "./art";
 
 const StaticArt = ({
   data: {
@@ -11,15 +13,15 @@ const StaticArt = ({
     bigImage: { gatsbyImageData },
   },
 }) => (
-  <div>
+  <ArtWrapper>
     <a href={bigImage.file.url} target="_blank" rel="noopener noreferrer">
-      <GatsbyImage image={getImage(gatsbyImageData)} />
+      <ArtImg image={getImage(gatsbyImageData)} />
     </a>
     <p>{name}</p>
     <p>{size}</p>
     <p>{materials.materials}</p>
     <p>{year}</p>
-  </div>
+  </ArtWrapper>
 );
 
 export default StaticArt;

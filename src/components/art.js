@@ -1,15 +1,17 @@
 import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 import Layout from "./layout";
 import Base from "./base";
 
-const ArtWrapper = styled.div`
+export const ArtWrapper = styled.div`
   width: 75%;
 `;
 
-const ArtImg = styled(GatsbyImage)`
+export const ArtImg = styled(GatsbyImage)`
   width: 100%;
+  max-width: 900px;
 `;
 
 const Art = (props) => {
@@ -42,7 +44,7 @@ const Art = (props) => {
             </a>
             <p>{name}</p>
             <p>{size}</p>
-            <p>{materials.materials}</p>
+            <ReactMarkdown>{materials.materials}</ReactMarkdown>
             <p>{year}</p>
           </ArtWrapper>
         )}
