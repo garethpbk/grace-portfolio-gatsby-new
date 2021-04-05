@@ -32,9 +32,7 @@ export const Right = styled.div`
   padding: 50px 0;
 `;
 
-const Base = (props) => {
-  const { index, links, art } = props;
-
+const Base = ({ art, index, links, render }) => {
   let prevLink = links[index - 1];
   let nextLink = links[index + 1];
 
@@ -49,7 +47,7 @@ const Base = (props) => {
         </Link>
         <Nav art={art} nextLink={nextLink} prevLink={prevLink} />
       </Left>
-      <Right>{props.render()}</Right>
+      <Right>{render()}</Right>
     </Container>
   );
 };

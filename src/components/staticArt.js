@@ -5,16 +5,18 @@ import { ArtImg, ArtWrapper } from "./art";
 
 const StaticArt = ({
   data: {
-    bigImage,
     materials,
     name,
     size,
     year,
-    bigImage: { gatsbyImageData },
+    image: {
+      file: { url },
+      gatsbyImageData,
+    },
   },
 }) => (
   <ArtWrapper>
-    <a href={bigImage.file.url} target="_blank" rel="noopener noreferrer">
+    <a href={url} target="_blank" rel="noopener noreferrer">
       <ArtImg image={getImage(gatsbyImageData)} />
     </a>
     <p>{name}</p>

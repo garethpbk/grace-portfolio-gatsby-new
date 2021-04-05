@@ -22,7 +22,7 @@ const Art = (props) => {
     name,
     size,
     year,
-  } = props.pageContext.edge.node;
+  } = props.pageContext.edge;
   const { index, links } = props.pageContext;
 
   const image = getImage(gatsbyImageData);

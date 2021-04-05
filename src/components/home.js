@@ -2,15 +2,13 @@ import React from "react";
 import Base from "./base";
 import StaticArt from "./staticArt";
 
-export default (props) => {
-  const { links } = props;
+const Home = ({ art, links }) => (
+  <Base
+    links={links}
+    index={0}
+    art={true}
+    render={() => <StaticArt data={art[0]} />}
+  />
+);
 
-  return (
-    <Base
-      links={links}
-      index={0}
-      art={true}
-      render={() => <StaticArt data={props.art[0].node} />}
-    />
-  );
-};
+export default Home;

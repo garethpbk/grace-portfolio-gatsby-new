@@ -7,10 +7,10 @@ import Layout from "../components/layout";
 import Home from "../components/home";
 
 const IndexPage = (data) => {
-  const art = data.data.allContentfulGraceArt.edges;
-  const links = art.map((uno) =>
-    uno.node.name.toLowerCase().replace(/ /g, "-")
-  );
+  const art =
+    data.data.allContentfulGraceArtReference.edges[0].node.artReference;
+
+  const links = art.map((uno) => uno.name.toLowerCase().replace(/ /g, "-"));
 
   return (
     <Layout>
@@ -23,28 +23,24 @@ export default IndexPage;
 
 export const ALL_ART = graphql`
   query {
-    allContentfulGraceArt {
+    allContentfulGraceArtReference {
       edges {
         node {
-          id
-          name
-          year
-          size
-          materials {
-            materials
-          }
-          image {
-            title
-            file {
-              url
+          artReference {
+            id
+            name
+            year
+            size
+            materials {
+              materials
             }
-          }
-          bigImage {
-            title
-            file {
-              url
+            image {
+              title
+              file {
+                url
+              }
+              gatsbyImageData
             }
-            gatsbyImageData
           }
         }
       }

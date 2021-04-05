@@ -9,28 +9,30 @@ exports.createPages = ({ graphql, actions }) => {
     resolve(
       graphql(`
         {
-          allContentfulGraceArt {
+          allContentfulGraceArtReference {
             edges {
               node {
-                id
-                name
-                year
-                size
-                materials {
-                  materials
-                }
-                image {
-                  title
-                  file {
-                    url
+                artReference {
+                  id
+                  name
+                  year
+                  size
+                  materials {
+                    materials
                   }
-                }
-                bigImage {
-                  title
-                  file {
-                    url
+                  image {
+                    title
+                    file {
+                      url
+                    }
                   }
-                  gatsbyImageData
+                  bigImage {
+                    title
+                    file {
+                      url
+                    }
+                    gatsbyImageData
+                  }
                 }
               }
             }
@@ -42,12 +44,15 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
-        const links = result.data.allContentfulGraceArt.edges.map((uno) =>
-          uno.node.name.toLowerCase().replace(/ /g, "-")
+        const art =
+          result.data.allContentfulGraceArtReference.edges[0].node.artReference;
+
+        const links = art.map((uno) =>
+          uno.name.toLowerCase().replace(/ /g, "-")
         );
 
-        result.data.allContentfulGraceArt.edges.forEach((edge, index) => {
-          const slug = edge.node.name.toLowerCase().replace(/ /g, "-");
+        art.forEach((edge, index) => {
+          const slug = edge.name.toLowerCase().replace(/ /g, "-");
           createPage({
             path: `/${slug}`,
             component: artTemplate,
